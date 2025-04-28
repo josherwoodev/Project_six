@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres-db:
+    container_name: 'project_six'
+    image: 'postgres:latest'
+    restart: 'unless-stopped'
+    environment:
+      POSTGRES_DB: project_six
+      POSTGRES_PASSWORD: 'p@ssw0rd'
+      POSTGRES_USER: bridge_user
+      POSTGRES_HOST_AUTH_METHOD: password
+    ports:
+      - '5434:5432'
+
+volumes:
+  postgresql_data:
+    driver: local
