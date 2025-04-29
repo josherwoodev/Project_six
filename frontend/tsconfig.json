@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom", "node"]
+  },
+  "include": [
+    "src",
+    "node_modules/vitest/globals.d.ts",
+  ],
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
