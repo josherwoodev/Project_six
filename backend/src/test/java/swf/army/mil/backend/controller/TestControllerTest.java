@@ -33,7 +33,7 @@ public class TestControllerTest {
     }
 
     @Test
-    void shouldReturnListOfCars() {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/cars"))
+    void shouldReturnListOfCars() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/cars"));
     }
 }
