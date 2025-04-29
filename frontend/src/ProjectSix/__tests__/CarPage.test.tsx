@@ -15,7 +15,7 @@ describe('CarPage', () => {
         expect(mockCarService).toHaveBeenCalledTimes(1);
     });
 
-    it('should display a list of cars', () => {
+    it('should display a list of cars', async () => {
         const car = {
             id:2,
             make: "Ford",
@@ -26,11 +26,10 @@ describe('CarPage', () => {
         }
         vi.spyOn(CarService, 'fetchCars').mockResolvedValue([car]);
         render(<CarPage/>)
-        expect(screen.findByText('2025 Ford F250')).toBeVisible()
-        expect(screen.findByText('Price: 100')).toBeVisible()
-        expect(screen.findByText('Used: false')).toBeVisible()
-
-
+        expect(await screen.findByText('2025 Ford F250')).toBeVisible()
+        expect(await screen.findByText('Price: $100')).toBeVisible()
+        expect(await screen.findByText('Is this car used: false')).toBeVisible()
     });
+
 })
 

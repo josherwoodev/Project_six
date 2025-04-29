@@ -31,4 +31,9 @@ public class TestControllerTest {
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0]").value(HELLO_WORLD));
     }
+
+    @Test
+    void shouldReturnListOfCars() {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/cars"))
+    }
 }
