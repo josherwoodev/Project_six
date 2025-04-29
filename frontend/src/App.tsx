@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import CarPage from "./ProjectSix/CarPage";
 
 export default function App() {
   const [testText, setTestText] = useState('No data from backend');
@@ -13,6 +14,7 @@ export default function App() {
   return (
     <>
       <h2>{testText}</h2>
+      <CarPage/>
     </>
   );
 }
