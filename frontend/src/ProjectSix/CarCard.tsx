@@ -1,27 +1,18 @@
-import * as React from "react";
 import {Car} from "../CarType";
 
-interface CarCardProps {
-    car: Car;
+type CarCardProps = {
+    car: Car
 }
 
-const CarCard: React.FC<CarCardProps> = ({car}) => {
-
+const CarCard = ({car}:CarCardProps) => {
     return (
-
         <div>
-            <h1>
-                {car.year + " " + car.make + " " + car.model}
-            </h1>
-            <span>
-                {"Price: $" + car.price}
-            </span>
-            <br/>
-            <span>
-                {"Is this car used: " + car.isUsed}
-            </span>
+            <h1>{car.make} {car.model}</h1>
+            <p>Year: {car.year}</p>
+            <p>Price: ${car.price}</p>
+            <p>Used Vehicle: {car.used ? "Yes" : "No"}</p>
         </div>
-    )
-}
+    );
+};
 
 export default CarCard;
