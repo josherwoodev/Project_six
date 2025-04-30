@@ -22,6 +22,4 @@ describe('CarCard', () => {
         expect(priceText).toBeVisible();
         expect(usedText).toBeVisible();
     });
-
-
 });
