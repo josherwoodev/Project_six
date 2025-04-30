@@ -24,7 +24,6 @@ const [cars,setCars] = useState<Car[]>([]);
                 {cars.map((el, index) => (<li key={index}><CarCard car={el} /></li>))}
             </ul>
         </>
-
     )
 }
 
