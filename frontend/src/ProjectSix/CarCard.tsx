@@ -7,7 +7,7 @@ type CarCardProps = {
 const CarCard = ({car}:CarCardProps) => {
     return (
         <div>
-            <h1>{car.make} {car.model}</h1>
+            <h2>{car.make} {car.model}</h2>
             <p>Year: {car.year}</p>
             <p>Price: ${car.price}</p>
             <p>Used Vehicle: {car.used ? "Yes" : "No"}</p>
