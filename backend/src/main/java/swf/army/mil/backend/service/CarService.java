@@ -6,6 +6,7 @@ import swf.army.mil.backend.repository.CarRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -21,6 +22,34 @@ public class CarService {
     }
 
     public CarEntity addNewCar(CarEntity car1) {
-    return carRepository.save(car1);
+        return carRepository.save(car1);
+    }
+
+    public CarEntity getCarById(Long l) {
+        return carRepository.findById(l).orElse(null);
+    }
+
+    public boolean deleteCar(Long l) {
+        if (carRepository.existsById(l)) {
+            carRepository.deleteById(l);
+            return true;
+        }
+        return false;
+    }
+
+    public CarEntity updateCarById(Long l, CarEntity carWithUpdates) {
+        CarEntity carToEdit = carRepository.findById(l).orElse(null);
+        if(carToEdit != null) {
+            if (carWithUpdates.getMake() != null) {carToEdit.setMake(carWithUpdates.getMake()); }
+            if (carWithUpdates.getModel() != null) {carToEdit.setModel(carWithUpdates.getModel()); }
+            if (carWithUpdates.getYear() != null) {carToEdit.setYear(carWithUpdates.getYear()); }
+            if (carWithUpdates.getPrice() != null) {carToEdit.setPrice(carWithUpdates.getPrice()); }
+            if (carWithUpdates.getUsed() != null) {carToEdit.setUsed(carWithUpdates.getUsed()); }
+
+            // Updates done. Return new car
+            return carToEdit;
+        }
+
+        return null;
     }
 }

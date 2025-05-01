@@ -77,4 +77,35 @@ public class CarControllerTest {
 
         verify(carService, times(1)).addNewCar(any(CarEntity.class));
     }
+
+    @Test
+    void shouldDeleteCarById() throws Exception{
+        Mockito.when(carService.deleteCar(1L)).thenReturn(true);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/car/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(true));
+        verify(carService, times(1)).deleteCar(1L);
+    }
+
+    @Test
+    void shouldUpdateCarById() throws  Exception {
+        CarEntity carBeforeUpdates = new CarEntity("Ford", "Mustang", 2000, 1222.22, true);
+        CarEntity carUpdates = new CarEntity("I have a new make", null, null, null, null);
+        CarEntity carAfterUpdates = new CarEntity("I have a new make", "Mustang", 2000, 1222.22, true);
+
+
+        when(carService.updateCarById(eq(1L), any(CarEntity.class))).thenReturn(carAfterUpdates);
+
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/car/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(carUpdates)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(carAfterUpdates.getId()))
+                .andExpect(jsonPath("$.make").value(carAfterUpdates.getMake()))
+                .andExpect(jsonPath("$.model").value(carAfterUpdates.getModel()))
+                .andExpect(jsonPath("$.year").value(carAfterUpdates.getYear()))
+                .andExpect(jsonPath("$.price").value(carAfterUpdates.getPrice()))
+                .andExpect(jsonPath("$.used").value(carAfterUpdates.getUsed()));
+    }
 }

@@ -27,8 +27,20 @@ public class CarController {
     @PostMapping("/cars")
     public ResponseEntity<CarEntity> addNewCar(@RequestBody CarEntity car)
     {
-
         return ResponseEntity.ok(carService.addNewCar(car));
+    }
+
+
+    @DeleteMapping("/car/{id}")
+    public ResponseEntity<Boolean> deleteCar(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(carService.deleteCar(id));
+
+    }
+
+    @PatchMapping("/car/{id}")
+    public ResponseEntity<CarEntity> updateCarById(@PathVariable Long id, @RequestBody CarEntity car) {
+        return ResponseEntity.ok(carService.updateCarById(id, car));
     }
 
 }
