@@ -1,5 +1,7 @@
 package swf.army.mil.backend.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import swf.army.mil.backend.entity.CarEntity;
 import swf.army.mil.backend.repository.CarRepository;
@@ -11,6 +13,7 @@ import java.util.Optional;
 @Service
 public class CarService {
 
+    private static final Logger log = LoggerFactory.getLogger(CarService.class);
     private final CarRepository carRepository;
 
     public CarService(CarRepository carRepository) {
@@ -47,7 +50,7 @@ public class CarService {
             if (carWithUpdates.getUsed() != null) {carToEdit.setUsed(carWithUpdates.getUsed()); }
 
             // Updates done. Return new car
-            return carToEdit;
+            return carRepository.save(carToEdit);
         }
 
         return null;
